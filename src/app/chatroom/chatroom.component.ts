@@ -52,7 +52,7 @@ export const snapshotToArray = (snapshot: any, counter: number) => {
     const toastr = AppInjector.get(ToastrService);
     const text = returnArr[returnArr.length - 1].message;
     httpClient
-      .get('whispering-stream-75761.herokuapp.com/api/hte', {
+      .get('http://whispering-stream-75761.herokuapp.com/api/hte', {
         params: new HttpParams().set('text', text),
       })
       .subscribe((data: any) => {
@@ -120,7 +120,7 @@ export class ChatroomComponent implements OnInit {
   }
 
   public translate(text: string): Observable<any> {
-    return this.http.get('http://localhost:3000/api/eth', {
+    return this.http.get('http://whispering-stream-75761.herokuapp.com/api/eth', {
       params: new HttpParams().set('text', text),
     });
   }
