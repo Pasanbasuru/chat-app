@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DatePipe } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { DatePipe } from '@angular/common';
     LoginComponent,
     RoomlistComponent,
     AddroomComponent,
-    ChatroomComponent
+    ChatroomComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +45,20 @@ import { DatePipe } from '@angular/common';
     MatProgressSpinnerModule,
     MatSortModule,
     MatSnackBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      maxOpened: 1
+    }),
+    MatPseudoCheckboxModule
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor(private injector: Injector) {
+    AppInjector = this.injector;
+  }
+}
+export let AppInjector: Injector;
