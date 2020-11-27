@@ -19,7 +19,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 
@@ -49,8 +49,7 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
     HttpClientModule,
     ToastrModule.forRoot({
       maxOpened: 1
-    }),
-    MatPseudoCheckboxModule
+    })
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
