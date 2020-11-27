@@ -21,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { TranslateService } from './services/translate.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { ToastrModule } from 'ngx-toastr';
       maxOpened: 1
     })
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, TranslateService],
   bootstrap: [AppComponent],
 })
 
