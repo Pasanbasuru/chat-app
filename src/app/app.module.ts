@@ -21,7 +21,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [

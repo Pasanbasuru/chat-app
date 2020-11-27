@@ -3,7 +3,6 @@ import {
   OnInit,
   ElementRef,
   ViewChild,
-  Injectable,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
@@ -45,20 +44,20 @@ export const snapshotToArray = (snapshot: any, counter: number) => {
     returnArr.push(item);
   });
 
-  if (counter > 0) {
-    const httpClient = new HttpClient(
-      new HttpXhrBackend({ build: () => new XMLHttpRequest() })
-    );
-    const toastr = AppInjector.get(ToastrService);
-    const text = returnArr[returnArr.length - 1].message;
-    httpClient
-      .get('http://whispering-stream-75761.herokuapp.com/api/hte', {
-        params: new HttpParams().set('text', text),
-      })
-      .subscribe((data: any) => {
-        toastr.info(data.data, '', { disableTimeOut: true , closeButton: true, progressBar: true, positionClass: 'toast-center-center'});
-      });
-  }
+  // if (counter > 0) {
+  //   const httpClient = new HttpClient(
+  //     new HttpXhrBackend({ build: () => new XMLHttpRequest() })
+  //   );
+  //   const toastr = AppInjector.get(ToastrService);
+  //   const text = returnArr[returnArr.length - 1].message;
+  //   httpClient
+  //     .get('http://whispering-stream-75761.herokuapp.com/api/hte', {
+  //       params: new HttpParams().set('text', text),
+  //     })
+  //     .subscribe((data: any) => {
+  //       toastr.info(data.data, '', { disableTimeOut: true , closeButton: true, progressBar: true, positionClass: 'toast-center-center'});
+  //     });
+  // }
   return returnArr;
 };
 
@@ -119,11 +118,11 @@ export class ChatroomComponent implements OnInit {
     });
   }
 
-  public translate(text: string): Observable<any> {
-    return this.http.get('http://whispering-stream-75761.herokuapp.com/api/eth', {
-      params: new HttpParams().set('text', text),
-    });
-  }
+  // public translate(text: string): Observable<any> {
+  //   return this.http.get('http://whispering-stream-75761.herokuapp.com/api/eth', {
+  //     params: new HttpParams().set('text', text),
+  //   });
+  // }
 
   onFormSubmit(form: any) {
     this.counter = 0;
@@ -133,11 +132,12 @@ export class ChatroomComponent implements OnInit {
     chat.date = this.datepipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
     chat.type = 'message';
     const newMessage = firebase.database().ref('chats/').push();
+    newMessage.set(chat);
 
-    this.translate(chat.message).subscribe((data: any) => {
-      chat.message = data.data;
-      newMessage.set(chat);
-    });
+    // this.translate(chat.message).subscribe((data: any) => {
+    //   chat.message = data.data;
+    //   newMessage.set(chat);
+    // });
 
     this.chatForm = this.formBuilder.group({
       message: [null, Validators.required],
